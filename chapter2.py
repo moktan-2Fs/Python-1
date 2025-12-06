@@ -182,14 +182,45 @@ friends = ["Sagar","Subash","orange",5, 555.3,"mango",False]
 # print(f1)
 
 #dictationary 
+# marks = {
+#     "sagar": 300,
+#     "ishaque": 500,
+#     "sakshyam": 333,
+#     "ishaque": 332,
+#     "rohan": "kumar",
+#     "list1": [5,3,2,"moktan","Roshan"]
+# }
+
+# # list_list = [["moktan",500,20],[1,2,3,"og"], [55,44,66,"gamvhira"]] #list of list
+# # print(list_list)
+# # print(list_list[0])
+# # print(list_list[2][3])
+
+# print(marks, type(marks))
+# print(marks["ishaque"])
+# print(marks["sagar"])
+# print(marks["rohan"])
+# print(marks["sakshyam"])
+# print(marks["list1"][3]) # accessing elements of list in a dictationary 
+
 marks = {
     "sagar": 300,
+    "ishaque": 500,
     "sakshyam": 333,
     "ishaque": 332,
-    "rohan": 335
+    "rohan": "kumar",
+    "list1": [5,3,2,"moktan","Roshan"],
+    0: "oalala", 
 }
-print(marks, type(marks))
-print(marks["sagar"])
-print(marks["ishaque"])
-print(marks["rohan"])
-print(marks["sakshyam"])
+# print(marks.items())
+# print(marks.keys())
+# print(marks.values())
+# marks.update({"rohan":100, "sujan": 645, 5: "mohan ", "list1":["komal"]})
+# print(marks)
+print(marks.get("list1"))
+marks["list1"].append("new_item") # adding new elements to list inside dictationary
+marks["list1"][3] = "Tamang"  #changing individual elements inside list inside dictationay 
+marks["list1"].remove("Roshan") #removing elements from list
+marks["list1"].insert(2, 10000)  #inserting in a specified locatiion 
+marks["list1"].insert(1, "lalallalala")
+print(marks["list1"][1])
