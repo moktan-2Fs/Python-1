@@ -155,7 +155,7 @@
 #chapter 4
 
 #list unlike strings lists are mutable and its values are changeable
-friends = ["Sagar","Subash","orange",5, 555.3,"mango",False]
+# friends = ["Sagar","Subash","orange",5, 555.3,"mango",False]
 # print(friends[-1])
 # print(friends[3])
 # friends[1] = "moktan" #list can be indexed
@@ -203,24 +203,62 @@ friends = ["Sagar","Subash","orange",5, 555.3,"mango",False]
 # print(marks["sakshyam"])
 # print(marks["list1"][3]) # accessing elements of list in a dictationary 
 
-marks = {
-    "sagar": 300,
-    "ishaque": 500,
-    "sakshyam": 333,
-    "ishaque": 332,
-    "rohan": "kumar",
-    "list1": [5,3,2,"moktan","Roshan"],
-    0: "oalala", 
-}
+# marks = {
+#     "sagar": 300,
+#     "ishaque": 500,
+#     "sakshyam": 333,
+#     "ishaque": 332,
+#     "rohan": "kumar",
+#     "list1": [5,3,2,"moktan","Roshan"],
+#     0: "oalala", 
+# }
 # print(marks.items())
 # print(marks.keys())
 # print(marks.values())
 # marks.update({"rohan":100, "sujan": 645, 5: "mohan ", "list1":["komal"]})
 # print(marks)
-print(marks.get("list1"))
-marks["list1"].append("new_item") # adding new elements to list inside dictationary
-marks["list1"][3] = "Tamang"  #changing individual elements inside list inside dictationay 
-marks["list1"].remove("Roshan") #removing elements from list
-marks["list1"].insert(2, 10000)  #inserting in a specified locatiion 
-marks["list1"].insert(1, "lalallalala")
-print(marks["list1"][1])
+# print(marks.get("list1"))
+# marks["list1"].append("new_item") # adding new elements to list inside dictationary
+# marks["list1"][3] = "Tamang"  #changing individual elements inside list inside dictationay 
+# marks["list1"].remove("Roshan") #removing elements from list
+# marks["list1"].insert(2, 10000)  #inserting in a specified locatiion 
+# marks["list1"].insert(1, "lalallalala")
+# print(marks["list1"][1])
+
+# https://youtu.be/m8oVwoGy6L8
+
+#sets = only takes every values only once and doesnt repeat it 
+# dic_empt = {
+
+# }
+# sets_1 = {1,3,4,3,5,6,7,7,"moktan"} #initing set 
+# e = set() # creating empty set 
+# print(sets_1) 
+# e.add(5) #adding set members 
+# e.add("mohan")
+# # e.clear()
+# print(len(e)) #length 
+# sets_1.remove(5)
+# sets_1.remove(7)
+# print(e, type(e))
+# a = sets_1.pop()
+# b = sets_1.pop()
+# c = sets_1.pop()
+# print(a, b, c)
+# print(sets_1) 
+
+#union in set 
+# s1 = {3,5,7,2}
+# s2 = {2,6,8,5}
+# print(s1.union(s2)) #takes one set as argument 
+# print(s1.intersection(s2))
+
+# names problem 
+dict_1 = {}
+i = 0
+while i<=2:
+    a = input("Enter your name: ")
+    b= input("Enter your favourite language: ")
+    dict_1.update({a:b})
+    i += 1
+print(dict_1)
