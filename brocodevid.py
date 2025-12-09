@@ -64,15 +64,160 @@
 # print(f"In an exhibit, I saw a {noun}.")
 # print(f"{noun} was {adjective2} and {verb1}")
 # print(f"I was {adjective3}!")
-fr=0
-fr=fr+1
-fr+=1
-fr-=1
-fr*=3
-fr/=3
-fr=int(fr)
-print(type(fr))
-fr=3
-fr**=2
-print(fr)
+# fr=0
+# fr=fr+1
+# fr+=1
+# fr-=1
+# fr*=3
+# fr/=3
+# fr=int(fr)
+# print(type(fr))
+# fr=3
+# fr**=2
+# print(fr)
  
+#nested loop
+# num_1 = "3434-43434-2323-232"
+# for nu1b1 in num_1:
+#   # print(nu1b1, end=" ")
+#   print(nu1b1)
+
+# rows = int(input("Enter the number of rows:"))
+# column = int(input("Enter the number of columns: "))
+# sym = input("Enter the symbol you want to print: ")
+# for x in range(rows):
+#   for y in range(column):
+#     print(sym, end="")
+#   print()
+
+ #collection = single "variable" used to multiple values
+# list = [] ordered and changable. Duplicates OK
+# set = {} unordered and immutable, but add/remoe ok. No duplicates
+# tuple = () ordered and unchangeable. Duplicates Ok. Faster   
+
+# fruits = ["mango","banana","orange", "pineapple"]
+# print(fruits[::3]) #for jumping numbers
+# print(fruits[0:3:2]) #range and jumping value at last 
+# for fruit in fruits:
+#   print(fruit, end= " & ")
+# print(dir(fruits)) # lists different actions that can be performed on the paramater of dir
+# print(help(fruits)) # shows all the things we can do to the parameter of help
+# print("mango" in fruits)
+# print("Kiwi" in fruits)
+# fruits[0] = "Kiwi"
+# print(fruits)
+# fruits.append("mango")
+# print(fruits)
+
+# try:
+#   fruits.remove("oragne")
+#   print(fruits)
+# except ValueError:
+#   print("Sorry couldn't find the element in the list")
+# finally:
+#   frui = input("Please reenter the value you want to remove: ")
+#   fruits.remove(frui)
+# print(fruits.clear())
+# print(fruits.count("apple"))
+
+# cars = set()
+# print(type(cars))
+# cars = {"audi","mercides","labo","suzuki","audi"}
+# # print(cars)
+# # print(dir(cars))
+# # print(help(cars))
+# print("Koniseg" in cars)
+# # print(cars[3]) 
+# cars.add("koniseg")
+# cars.remove("audi")
+# cars.pop()
+# print(cars)
+
+# touples
+# fruits = ("apple","mango","banana")
+# print(fruits)
+# print(fruits.index("apple"))
+# print(fruits.count("mango"))
+
+# foods = []
+# prices = []
+# total = 0
+# price = 0
+# foo = ""
+# while True:
+#   foo = input("Enter a food to buy(Q/q to quit): ")
+#   if foo == "Q" or foo == "q":
+#     break
+#   else:
+#     price = float(input(f"Enter the price of {foo}: Rs. "))
+#     foods.append(foo)
+#     prices.append(price)
+#     total += price
+# print("Your bill:")
+# for food in foods:
+#   print(food, end= " ")
+# print()
+# for price in prices:
+#   print(price,end= " ")
+# print(f"\nTotal= Rs.{total}")
+
+# 2d list
+# fruits = ("apple", "mango", "pineapple", "banana")
+# vagetables = ("carrot", "celery", "potatoes")
+# meats = ("chicken", "mutton", "fish")
+# groceries = {fruits, vagetables, meats}
+# for foods in groceries:
+#   print(foods[0][2],end=" ")
+#   print()
+# print(groceries[0][2]) #for individual elements inside list elements
+# i = 0
+# while i < len(groceries):
+#   print(groceries[i])
+#   i += 1
+
+# list_1 = [1,2,3]
+# list_2 = [4,5,6]
+# list_3 = [7,8,9]
+# list_4 = ["*",0,"#"]
+# fin_list = [list_1,list_2,list_3,list_4]
+# print(fin_list,end= " ")
+# print("Simple calculator form: ")
+# for row in fin_list:
+#   i = 0
+#   print(row[i],row[i+1],row[i+2])
+#   i += 1
+
+#same as above but a little different 
+# print("    Simple Calculator \n \n  ")
+# for row in fin_list:
+#   for nur in row:
+#     print("    ",nur, end= " ")
+#   print()
+
+
+#quiz in python
+# questions = ("How many elements are there in periodic table?: ",
+#              "Which animal lays the largest eggs?: ",
+#              "How many bones are there in the human body?: ",
+#              "Which planet in the solar system is the hottest? ")
+# options = (
+#   ("A. 113","B. 118","C. 116","D. 117"),
+#   ("A. Ostrich","B. Kiwi","C. Penguin","D. Golden Eagle"),
+#   ("A. 200","B.210","C. 206 ","D. 300"),
+#   ("A. Earth","B. Mars","C. Venus ","D. Jupiter"))
+# answers = ("C","A","C","C")
+# score = 0
+# i = 1
+# qstn_num = 0
+# for queston in questions:
+#   print(f"\n{i}. {queston}")
+#   for option in options[qstn_num]:
+#     print(option, end= " ")
+#     print()
+#   ans = input("Enter the answer: ").upper()
+#   i += 1
+#   if ans == answers[qstn_num]:
+#     score += 1
+#   qstn_num += 1
+# print("You scored: ",score," in the test.")
+
