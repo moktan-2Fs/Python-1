@@ -254,11 +254,61 @@
 # print(s1.intersection(s2))
 
 # names problem 
-dict_1 = {}
-i = 0
-while i<=2:
-    a = input("Enter your name: ")
-    b= input("Enter your favourite language: ")
-    dict_1.update({a:b})
-    i += 1
-print(dict_1)
+# dict_1 = {}
+# i = 0
+# while i<=2:
+#     a = input("Enter your name: ")
+#     b= input("Enter your favourite language: ")
+#     dict_1.update({a:b})
+#     i += 1
+# print(dict_1)
+ 
+#for loop in python
+# credit_card = "2343-4343-3433"
+# for x in credit_card:
+#   break if x == 2 else continue 
+#   print(x)
+
+# for x in range(1, 23):
+#   print(x)
+#   if x == 20:
+#     break 
+#   if x == 10:
+#     continue 
+
+# import time 
+# i = int(input("Enter the seconds you want to start form: "))
+# for num in range(i,0,-1):  #here i is the initial condition, 0 is the final condition , -1 is the decrement similar to for loop in c 
+#     seconds = num % 60
+#     print(f"00:00:{seconds}")
+#     time.sleep(1)
+# print("Boom!!!!!")
+# time_1 = float(input("Enter the time in hours: "))
+# mins = int(time_1*60)
+# sec = int(mins*60)
+# print(mins, sec)
+# for x in range(mins,0,-1):
+#   for y in range(sec,0,-1):
+#     time.sleep(0.5)
+#     print(f"{x}:{y}")
+
+# i = 0
+# j = 0
+# k = 0
+# min = int(input("Enter the minutes: "))
+# sec = min*60
+# while  i<min:
+#   j = 0
+#   while j<60: 
+#     time.sleep(1)
+#     if i > 9:
+#         print(f"{i}:{j+1}")
+#     elif j == 59:
+#        print(f"{k}{i+1}:00")
+#     elif j < 9:
+#        print(f"0{i}:0{j+1}")
+#     else:
+#         print(f"{k}{i}:{j+1}")
+#     j += 1
+#   i += 1
+#
