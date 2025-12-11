@@ -311,4 +311,65 @@
 #         print(f"{k}{i}:{j+1}")
 #     j += 1
 #   i += 1
-#
+
+#dictionary = collection of {key:value} pairs , ordered and changeable. no duplicates
+# capitals = {
+#   "USA": "Washingto D.C.",
+#   "Nepal": "Kathmandu",
+#   "China": "Beijing",
+#   "Russia": "Moscow"
+# }
+# print(capitals.items())
+# for key, value in capitals.items():
+#   print(key,value,"\n",end ="")
+# capitals.update({"Germany": "Berlin"})
+# capitals.pop("USA")
+# capitals.popitem() #removes the latest added key value pairs in this case it removes  germany
+# print(capitals)
+# capitals.clear()
+
+# print(len(capitals))
+# fok = []
+# i = 0
+# while i < len(capitals):
+#   for x in capitals.keys():
+#     fok[i] = x
+#   i += 1
+# print(fok)
+# print(help(capitals))
+# i = 0
+# for cap in capitals.keys():
+#   print(cap, end= " ")
+# print()
+# for val in capitals.values():
+#   print(val, end= " ")
+# if capitals.get("Russia"):
+#   print(capitals.get("Russia"),"is the capital of Russia.")
+# else:
+#   print("Sorry the country you provided is not listed in this dictionary..")
+
+#concession stand program
+menu = {
+  "pizza": 4.5,
+  "nachos": 3.7,
+  "fries": 4.2,
+  "soda": 9,
+  "pretzel": 2.55
+}
+cart = []
+total = 0
+print("--------Menu---------\n")
+for key, value in menu.items():
+  print(f"{key:10}: Rs. {value:.2f}") #:10 in keys for space after key prints
+  # print(key, "Rs.",value)
+print("\n---------------------")
+while True:
+  food = input("Select an item(q to quit): ").lower()
+  if food == "q":
+    break
+  elif menu.get(food) is not None:
+    cart.append(food)
+  else:
+    cart.append(food)
+    continue
+print(cart)
