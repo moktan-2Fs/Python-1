@@ -94,20 +94,20 @@
 # else:
 #     print("Please enter a valid operator...")
 # print("The final result is: ", result)
-try:
-    ab = int(input("Enter any number: "))
-    ba = int(input("Enter any number: "))
-    print(ab + ba)
-except ZeroDivisionError:
-    print("cannot divide by 0 you jackass")
-except TypeError:
-    print("cannot perform operations on different types")
-except ValueError:
-    print("Please enter a valid number Mr. Jackass")
-except Exception:
-    print("it is whole and all types of exception") # this takes all errors and works on them not good for use 
-finally:
-    print("this is executed after the except are executed")
+# try:
+#     ab = int(input("Enter any number: "))
+#     ba = int(input("Enter any number: "))
+#     print(ab + ba)
+# except ZeroDivisionError:
+#     print("cannot divide by 0 you jackass")
+# except TypeError:
+#     print("cannot perform operations on different types")
+# except ValueError:
+#     print("Please enter a valid number Mr. Jackass")
+# except Exception:
+#     print("it is whole and all types of exception") # this takes all errors and works on them not good for use 
+# finally:
+#     print("this is executed after the except are executed")
 # print(ab/0) #ZeroDivisionError 
 # print("ke" + ab) # typeerror , valueerror is when user enters different datatype like strings instead of integars
 
