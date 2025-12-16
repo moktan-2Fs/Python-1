@@ -58,3 +58,4 @@
 #         return 1
 #     return n*re_fact(n-1)
  
+open("file.txt", )
