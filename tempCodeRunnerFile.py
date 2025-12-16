@@ -1,4 +1,2 @@
-  if j == 100:
-    break
-  else:
-    j = 0
+if n == 0: # this is a base case for recursion that
+    #     return
