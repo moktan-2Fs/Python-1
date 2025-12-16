@@ -43,4 +43,18 @@
 # usd = convers(neprs)
 # print(f"Rs.{neprs} = {usd:.2f}$")
 
-#recurssion 
+#recursion 
+# def show(n):
+#     if n == 0: # this is a base case for recursion that
+#         return  # stops the recursion and returns the values 
+#     print(n)
+#     show(n-1)
+#     print("prints while returning from basecase")
+# show(5)
+ 
+#call stack for understanding recursion 
+# def re_fact(n):
+#     if n == 0 or n == 1 :
+#         return 1
+#     return n*re_fact(n-1)
+ 

@@ -221,3 +221,9 @@
 #   qstn_num += 1
 # print("You scored: ",score," in the test.")
 
+def mul(*args):
+    mal = 1
+    for ar in args:
+        mal *= ar
+    print(mal)
+mul(5,5,5,5,5)
