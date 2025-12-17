@@ -86,10 +86,10 @@
 # f = open("ignofile.txt", "r")
 # print(f.read())
 # f.close()
-prifi = None
-my_list = ["Sagar", "Moktan", "Tamang", "is", "a", "Don."]
-with open("ignofile.txt", "r") as file:
-    
+# prifi = None
+# my_list = ["Sagar", "Moktan", "Tamang", "is", "a", "Don."]
+# with open("ignofile.txt", "r") as file:
+
 
 
     # for fi in my_list:
