@@ -86,8 +86,22 @@
 # f = open("ignofile.txt", "r")
 # print(f.read())
 # f.close()
+prifi = None
+my_list = ["Sagar", "Moktan", "Tamang", "is", "a", "Don."]
+with open("ignofile.txt", "r") as file:
+    
 
 
+    # for fi in my_list:
+    #     file.write(fi)
+    #     print("\n")
+    # prifi = file.read()
+    #  print(prifi)
+    #  for word in prifi:
+    #      print(word, end= " ")
+    # print(prifi.replace("Sagar","Lal Kumar"))
+    # print(type(prifi))
+    # print(prifi)
 
 
 
