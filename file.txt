@@ -1,2 +1,0 @@
-this is a random file created to understand file handling in 
-python
