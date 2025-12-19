@@ -19,4 +19,4 @@
 
 with open("moktan.txt","w+") as file:
   file.write("Hello form the other side.....")
-  
+  print(file.read())
