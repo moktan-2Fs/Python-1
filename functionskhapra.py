@@ -102,13 +102,8 @@
     # print(prifi.replace("Sagar","Lal Kumar"))
     # print(type(prifi))
     # print(prifi)
-
-
-
-
 # lambda x, y: x+y
 # lambda(5,6)
-
 
 # freecodecamp
 # my_range_var = range(5)
@@ -117,3 +112,11 @@
 
 # user_name: str = 'Moktan Sagar'
 # print(user_name[1:9:3])
+
+import os
+
+with open("sagar_1.txt", "w+") as file:
+    file.write("Hello From The Other Side>>.......\n")
+    file.write("This is sagar tamang form Nepal who is trying to learn AI and ML...")
+    file.write("\nthis is new line that i have made...")
+
