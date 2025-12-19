@@ -1,4 +1,4 @@
-# def to define a function 
+# def to define a function
 # def calc_sum(a,b): return a+b
 # num1 = int(input("Enter first number: "))
 # num2 = int(input("Enter second number: "))
@@ -33,29 +33,90 @@
 # f = int(input("enter the number whichs factorial you want: "))
 # factorl(f)
 
-#currency conversion
+# currency conversion
 # rate = 143.5
 # neprs = 0
 # def convers(a):
 #     a /= rate
-#     return a 
+#     return a
 # neprs = int(input("Enter the amount you want to convert: "))
 # usd = convers(neprs)
 # print(f"Rs.{neprs} = {usd:.2f}$")
 
-#recursion 
+# recursion
 # def show(n):
 #     if n == 0: # this is a base case for recursion that
-#         return  # stops the recursion and returns the values 
+#         return  # stops the recursion and returns the values
 #     print(n)
 #     show(n-1)
 #     print("prints while returning from basecase")
 # show(5)
- 
-#call stack for understanding recursion 
+
+# call stack for understanding recursion
 # def re_fact(n):
 #     if n == 0 or n == 1 :
 #         return 1
 #     return n*re_fact(n-1)
- 
-open("file.txt", )
+
+# f = open("ignofile.txt", "r")
+
+# # reads the first line from the file(only 1st line and rest can be also done in line or as a whole by read())
+# data_infile_line1 = f.readline()
+# # sending parameters gives the characters in the parameters numbers eg: (5) gives first 5 characters from the file
+# data_infile = f.read()
+# print(data_infile_line1)
+# print(type(data_infile))
+# print(data_infile, end="")
+# f.close()
+
+# "r" for reading
+# "w" for writing
+# "x" for new file and open for writing
+# "a" for appending to the end of the file if it exists
+# "b" binary mode
+# "t" text mode(default)
+# "+" open a disk file for updationg (reading and writing )
+
+# writing to a file
+# f = open("ignofile.txt", "a")
+# f.write('Also I love girls with certain behaviours... \n')
+# print(f)
+# f.close()
+
+# f = open("ignofile.txt", "r")
+# print(f.read())
+# f.close()
+# prifi = None
+# my_list = ["Sagar", "Moktan", "Tamang", "is", "a", "Don."]
+# with open("ignofile.txt", "r") as file:
+
+
+
+    # for fi in my_list:
+    #     file.write(fi)
+    #     print("\n")
+    # prifi = file.read()
+    #  print(prifi)
+    #  for word in prifi:
+    #      print(word, end= " ")
+    # print(prifi.replace("Sagar","Lal Kumar"))
+    # print(type(prifi))
+    # print(prifi)
+# lambda x, y: x+y
+# lambda(5,6)
+
+# freecodecamp
+# my_range_var = range(5)
+# print(my_range_var)
+# print(isinstance("hello world",str))
+
+# user_name: str = 'Moktan Sagar'
+# print(user_name[1:9:3])
+
+import os
+
+with open("sagar_1.txt", "w+") as file:
+    file.write("Hello From The Other Side>>.......\n")
+    file.write("This is sagar tamang form Nepal who is trying to learn AI and ML...")
+    file.write("\nthis is new line that i have made...")
+
