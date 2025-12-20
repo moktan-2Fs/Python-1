@@ -13,6 +13,9 @@ array = np.array([[(1,3,5,8),(5,3,25,4)],
                   ])
 print(array[2][0][3]) #this is chainindexing 
 print(array[2,0,3]) #this is multidimensional indexing
+
+
+
 # print(array.ndim)
 # print(array)
 # print()
