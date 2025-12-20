@@ -183,3 +183,4 @@ import os
 # hum_1.age = 20
 # print(hum_1.name, hum_1.cast, hum_1.age, hum_1.addrss)
 
+#attributes and instances in class in python 
