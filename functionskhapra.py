@@ -115,8 +115,71 @@
 
 import os
 
-with open("sagar_1.txt", "w+") as file:
-    file.write("Hello From The Other Side>>.......\n")
-    file.write("This is sagar tamang form Nepal who is trying to learn AI and ML...")
-    file.write("\nthis is new line that i have made...")
+# with open("sagar_1.txt", "w+") as file:
+#     file.write("Hello From The Other Side>>.......\n")
+#     file.write("This is sagar tamang form Nepal who is trying to learn AI and ML...")
+#     file.write("\nthis is new line that i have made...")
+
+# f = open("practice.txt","w+")
+# f.write("""
+#     Hi everyone
+#     we are learning File I/O
+#     using Java
+#     I like programming in Java""")
+# f.close()
+# os.remove("moktnanew.txt")
+# f = open("practice.txt","r")
+# rep_sen = f.read()
+# f.close()
+# if rep_sen.find("learning"):
+#     print("True")
+# print(rep_sen.replace("Java","Python "))
+
+# print("x" in "xyz")
+
+#class is like a blueprint to make its objects
+# variables or datas inside a class are called attributes 
+# and the functions are called instances 
+
+# class student:
+#     #default constructor
+#     # def __init__(self):
+#     #     print("hello from the default constructor...")
+#     #parameterized constructor
+#     def __init__(self, name, age, address):
+#         self.name = name 
+#         self.age = age
+#         self.add = address
+#         print(self.name)
+#         print(self.age)
+#         print(self.add)
+#         print()
+#         # print(self)
+#         # print('creating a constructor')
+# s1 = student('moktan',20,'koteshwor')
+# # print(s1)
+# s2 = student('tamang',39, 'thimi')
+# # print(s2)
+# s3 = student('moktsagar', 50, 'kupondole')
+
+# print(s3)
+# print(s1)
+# print(s1.name)
+# s1.name = "moktan"
+# print(s1.name)
+
+# class human:
+#     name = ""
+#     cast = ""
+#     age = 0
+#     addrss = ""
+#     # pri
+#     # def work_job():
+#     #     print("job is working")
+# hum_1 = human()
+# hum_1.name = "Sagar"
+# hum_1.cast = "Tamang"
+# hum_1.addrss = "Koteshwor"
+# hum_1.age = 20
+# print(hum_1.name, hum_1.cast, hum_1.age, hum_1.addrss)
 
