@@ -26,7 +26,7 @@
 #     print("You are a student.")
 # else:
 #     print("You are not a student.")
-import calcmodule as cal
+import SomeRandoms.calcmodule as cal
 print(cal.div(5,5))
 x ,y = int(input("Enter any two numbers: ")), int(input("Enter any number: "))
 # y = int(input("Enter any number: "))
