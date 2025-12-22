@@ -8,20 +8,24 @@
 #     k = i * 2
 #     if k % 2 == 0:
 #       print(k)
-num = 20 
+
+num = int(input("Enter any number: "))
 i = 2
-prime = 0
-while i <= 20:
+prime_list = []
+while i <= num:
   j = 2
   count = 0
-  while j <= i :
+  while j <= i:
     if i % j == 0:
       count += 1
     j += 1
   if count == 1:
+    prime_list.append(i)
     # print(i)
-    k = i * 2
-    if k % 2 == 0:
-      print(f"{i}+{i} = {k}")
-    prime += 1
-  i += 1 
+  i += 1
+print(prime_list)
+
+for prime in prime_list:
+  for i in prime_list:
+    if prime + i == num:
+      print(f"{prime}+{i} = {num}")
