@@ -184,3 +184,21 @@ import os
 # print(hum_1.name, hum_1.cast, hum_1.age, hum_1.addrss)
 
 #attributes and instances in class in python 
+# datas that differ from objects to objects are defined using self. 
+# datas that are same for all class are set as class attributes and stored only once
+
+class Student:
+    college_name = "V.S. Niketan College"
+    name = "Khapra College" #class attribute
+    def __init__(self, name, marks):
+        self.name = name #object attribute > class attribute in precedence 
+        self.marks = marks
+        # print('adding new student in database....')
+
+s1 = Student("sagar", 85)
+print(s1.name, s1.marks, s1.college_name, end = " ")
+print("\n")
+s2 = Student("Sandip", 79)
+print(s2.name, s2.marks, s2.college_name, end = " ")
+
+print(Student.college_name)
