@@ -1,4 +1,4 @@
-import BroCodezzz.passwordmodule as pm
+import SmallProjects.passwordmodule as pm
 while True:
 #   my_password = input("Enter your password: ")
 #   lenof_pass = len(my_password)

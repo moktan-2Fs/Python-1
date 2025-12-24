@@ -187,18 +187,125 @@ import os
 # datas that differ from objects to objects are defined using self. 
 # datas that are same for all class are set as class attributes and stored only once
 
-class Student:
-    college_name = "V.S. Niketan College"
-    name = "Khapra College" #class attribute
-    def __init__(self, name, marks):
-        self.name = name #object attribute > class attribute in precedence 
-        self.marks = marks
-        # print('adding new student in database....')
+# class Student:
+#     college_name = "V.S. Niketan College"
+#     name = "Khapra College" #class attribute
+#     def __init__(self, name, marks):
+#         self.name = name #object attribute > class attribute in precedence 
+#         self.marks = marks
+#         # print('adding new student in database....')
 
-s1 = Student("sagar", 85)
-print(s1.name, s1.marks, s1.college_name, end = " ")
-print("\n")
-s2 = Student("Sandip", 79)
-print(s2.name, s2.marks, s2.college_name, end = " ")
+# s1 = Student("sagar", 85)
+# print(s1.name, s1.marks, s1.college_name, end = " ")
+# print("\n")
+# s2 = Student("Sandip", 79)
+# print(s2.name, s2.marks, s2.college_name, end = " ")
 
-print(Student.college_name)
+# print(Student.college_name)
+
+#Methods -> Functions that belongs to objects 
+
+# class Student:
+#     college_name = "V.S. Niketan College"
+#     name = "Khapra College" 
+#     def __init__(self, name, marks):
+#         self.name = name 
+#         self.marks = marks
+#     def hello_welcm(self):
+#         print("Hello User!!!! Welcome to my Python program....")
+
+# st1 = Student("sagar", 34)
+# st1.hello_welcm()
+
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+
+#     def get_avg(self):
+#         sum = 0 
+#         for val in self.marks:
+#             sum += val
+#         print(f"Hello {self.name} your average value is {sum/3:.2f}")
+
+# s1 = Student("Sagar Moktan",[34,56,98])
+# s1.get_avg()
+
+# s1.name = "Rounak"
+# s1.get_avg()
+
+#static methods -> doesn't need self parameter and work at class level 
+# @staticmethod is used above the function to make it static, its a decorator 
+# decorators allow us to wrap another function in order to extend the behaviour of the wrapped function, without permanently modifying it 
+
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#     @staticmethod
+#     def prihell():
+#         print("hello moktan")
+
+#     def get_avg(self):
+#         sum = 0 
+#         for val in self.marks:
+#             sum += val
+#         print(f"Hello {self.name} your average value is {sum/3:.2f}")
+
+# s1 = Student("Sagar Moktan",[34,56,98])
+# s1.get_avg()
+
+# s1.name = "Rounak"
+# s1.get_avg()
+
+# Student.prihell()
+# s1.prihell()
+
+# abstraction in OOP -> means hiding the datas and functions from the users that are unnecessary and unwanted or unrelated to the user 
+
+# class Human():
+#   def __init__(self):
+#     self.see = False
+#     self.move = False
+#     self.fight = False
+#   def Awake(self):
+#     self.see = True
+#     self.move = True
+#     self.fight = True
+#     print("the person is awake.....")
+
+# human1 = Human()
+# human1.Awake()
+
+# Encapsulation -> wrapping data and functions into a single unit(object)
+
+#question
+# class Account():
+#     def __init__(self, balance, accno):
+#         self.account_no = accno 
+#         self.balance = balance
+#     def debit(self, amount):
+#         self.balance -= amount
+#     def credit(self, amount):
+#         self.balance += amount
+#     def prin(self):
+#         print(f"your account no is: {self.account_no} and your balance is: {self.balance}$")
+
+# accou1 = Account(5555, 2343343340034)
+# accou1.credit(1000)
+# accou1.prin()
+# accou1.debit(40000)
+# accou1.prin()
+
+#del keyword -> delete object properties or object itself
+
+class Student():
+    def __init__(self,name):
+        self.name = name
+
+s1 = Student("Sagar Moktan")
+print(s1.name)
+del s1.name #deletes the name attribute of s1 object
+# del s1  deletes the object itself
+print(s1.name)
+

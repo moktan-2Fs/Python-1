@@ -36,9 +36,9 @@ def final_count(upass):
   num_count = numbers(upass)
   unique_count = uniq_chars(upass)
   upper_case = upper_count(upass)
-  if lenpass > 4 and num_count > 2 and unique_count > 2 and upper_case > 2:
+  if lenpass > 4 and num_count >= 2 and unique_count >= 2 and upper_case >= 2:
     print("The password is very very strong....")
   elif (lenpass >5 and num_count >2):
-    print("the password is strong.")
+    print("\nthe password is strong.\n")
   else:
-    print("The password is not very strong.")
+    print("\nThe password is not very strong.\n")
