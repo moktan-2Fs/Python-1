@@ -1,0 +1,16 @@
+
+{ 
+  "name": "Moktan",
+  "age": 20,
+  "favouriteNumber": 7,
+  "isProgrammer": true,
+  "hobbies": ["Reading","Exercising","improving","running"],
+  "likesGirss": true,
+  "friend": {
+    "name": "Sagar",
+    "age": 30,
+    "isProgrammer": true, 
+    "friend": ["Sandi","Sundi","Lundi"]
+  },
+  "isLearning": true
+}

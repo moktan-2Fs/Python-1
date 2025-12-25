@@ -1,0 +1,16 @@
+[
+  {
+    "name": "mokean Coorporation pvt ltd",
+    "noofemployees": 500,
+    "location": "Putalisadak",
+    "CEO": "Sagar Tamang",
+    "ratings": 5.0
+  },
+  {
+    "name": "LIFO Coorporation Pvt",
+    "noofemployees": 1000,
+    "location": "Newroad",
+    "CEO": "Sandi Moktan",
+    "ratings": 10.0
+  }
+]
