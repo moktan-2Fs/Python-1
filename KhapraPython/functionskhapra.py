@@ -308,4 +308,4 @@ print(s1.name)
 del s1.name #deletes the name attribute of s1 object
 # del s1  deletes the object itself
 print(s1.name)
-
+ 
