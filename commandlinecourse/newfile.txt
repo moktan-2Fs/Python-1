@@ -1,0 +1,60 @@
+terminal -> tool that you use to type and execute commands. used to be hardware, now we use "terminal emulator" software 
+
+command line or command prompt -> the interface of the terminal, windows often calls their terminal program the "command line". the 2 terms are used interchangeably
+
+the shell -> the program that the terminal runs. the "OS" for terminal 
+
+windows used to use a shell called COMMAND.COM that was later switched to CMD.EXE. It is very limiting.
+windows also offers Powershell, which has different commands (and some of the same) than Bash, ZSH and other Uniix-based shells 
+there are a lot of Unix-based solutions for windows including git bash and WSL(windows subsystem for Linux)
+- definition
+-> command 
+commands
+
+cd - change directory
+cd \ -> to go back to the main user 
+
+how to see what is in the current directory
+dir -> shows the files and folders that are present inside the current directory
+
+mkdir - make a new directory
+mkdir f_name -> makes a new folder
+
+echo - sends text or messages , prints out whatever you give in the terminal
+echo text/message -> prints the message
+
+cls - clears the screen
+cls -> 
+
+echo hello world > moktan_1.txt -> prints hello world in moktan_1.txt if there is no such file it creates 
+the file and then prints it there, echo works as "w" in file handling it overrides 
+
+type - output the contents of a text file 
+type _filename -> prints in terminal whats in the file 
+
+echo sometext > foldername\filetowritein 
+echo hello world > moktan2\newfile2.txt
+
+cd .. -> goes one step back from the current folder 
+cd ..\.. -> goes 2 directory back 
+
+cd ..\foldername -> goes back one step and then goes to the folder if there is one
+
+cd c:\demo_newfolder\foldername\soone -> goes to the last dir from the path 
+
+
+absolute path - start with the drive letter. 
+relative path - path in relation to where you are 
+
+copy - copy<source> <target> 
+copy maoka1.txt maoka2.txt -> copies first to second file 
+
+tree - show directories as a hierarchy 
+tree -> shows dirs only no files 
+
+parameters (arguments) typically use \ or - as a prefix
+
+tree /F -> shows files and folders both inside the current directory
+
+tree /? -> means asking for help regarding tree
+
