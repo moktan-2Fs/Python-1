@@ -1,12 +1,12 @@
 import requests as rq
 
-params = {
+payload = {
   "name": "Moktan",
   'age': 23,
   'status': "single"
 }
 
-response = rq.get("https://httpbin.org/get", params=params)
+response = rq.post("https://httpbin.org/post", data=payload)
 print(response.url)
 
 print(response.text) # give the full content of the response 
