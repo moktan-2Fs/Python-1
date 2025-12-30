@@ -58,3 +58,17 @@ tree /F -> shows files and folders both inside the current directory
 
 tree /? -> means asking for help regarding tree
 
+there are many attributes or parameters like F in the cmd for many commands just 
+use /? to see the parameters that can be used for the command
+
+ren - rename file, this only works for files not folders
+ren oldname_file newname_file ->
+
+move file_name folder\same_file_name - moves file with the same name to the folder
+move my.txt moktan2\my.txt -> moves my.txt to moktan2 as my.txt
+
+del - deletes a file 
+del test1.txt -> deletes test1.txt
+
+rmdir floder_name /S- removes a directory but if its not empty it will not delete so /S or /N is used
+rmdir moktan2 /S -> removes the dir with files
