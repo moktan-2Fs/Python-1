@@ -1,0 +1,8 @@
+ipconfig -> gives configurations including the ipaddress of the computer or laptop
+
+ipconfig /all -> gives all infos related to networks
+
+ipconfig /all | findstr somethingspecifickeyword like DNS -> gives infos related to the keyword only
+
+ipconfig /release -> for releasing the ipaddress
+ipconfig /renew -> refreshes the ip address
