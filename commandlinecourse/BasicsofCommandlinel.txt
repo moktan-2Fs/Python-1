@@ -72,3 +72,19 @@ del test1.txt -> deletes test1.txt
 
 rmdir floder_name /S- removes a directory but if its not empty it will not delete so /S or /N is used
 rmdir moktan2 /S -> removes the dir with files
+
+pip freeze -> shows all the packages downloaded inside an environment
+
+pip freeze ->Shows all installed Python packages with versions
+
+example: after the command
+Flask==3.0.0
+requests==2.31.0
+numpy==1.26.2
+
+
+pip freeze > requirements.txt -> Saves dependencies so others can install them:
+
+
+pip install -r requirements.txt -> installs all the dependencies listed inside the requirements.txt file
+
