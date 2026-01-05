@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -20,6 +20,14 @@ def greet(name):
 def add(num1,num2): 
   return f"The sum of {num1} & {num2} is: {num1+num2}"
 
+@app.route("/handle_url_parms")
+def handle_parms():
+  if "greeting" in request.args.keys() and "name" in request.args.keys():
+    greeting = request.args.get("greeting")
+    name = request.args.get("name")
+    return f"{greeting},{name}"
+  else: 
+    return "Some parameters are missing..."
 
 if __name__ == '__main__':
   app.run(host= "0.0.0.0",debug= True)
