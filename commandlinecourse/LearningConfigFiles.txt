@@ -1,0 +1,41 @@
+1. Navigate to Common Config Locations
+- most apps config files live in either installation directory or the users profile  (AppData)
+to go there: 
+  cd %AppData% -> C:\Users\<username>\AppData\Roaming
+  cd %LocalAppData% -> C:\Users\<username>\AppData\Local 
+
+eg:
+  cd %AppData%\Dev-Cpp -> shows the appdata dir of the devcpp app
+
+2. Search for config files inside the roaming folder
+  -is with .ini/.config/.xml file type 
+
+3. Once the file is found, can directly open using the app name and then the address fo the config file 
+eg:
+  notepad "C:\Users\<username>\AppData\Roaming\AppName\settings.ini" -> opens the .ini file in notepad
+  -after opening the file make necessary changes and save it and then close all related to the program and start again to see changes 
+
+# example workflow 
+  cd %AppData%\AppName
+  dir 
+  Appname config.xml etc 
+
+{
+ # config file types 
+   - typically there are 3 types of config files they are 
+      i. .ini file 
+          - plain text, simple-keyvalue pairs grouped into sections
+          - common in old applications, lightweight
+
+      ii. .config file
+          - usually xml-based(in .NET apps) but can vary
+          - widely used in .NET apps, more powerfull than .ini and can integrate with frameworks for automatic parsing
+      
+      iii. .xml file 
+          - fullform(Extensible Markup Language), structured, hierarchical data
+          - general-purpose data storage(not just configs)
+          - used in many apps for preferences, metadata or communication 
+          - highly flexible, supports complex structures, can be validated with schemas(XSD)
+    
+    complexicity increases as the file type moves down 
+}
