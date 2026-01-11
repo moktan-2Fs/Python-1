@@ -1,0 +1,24 @@
+JSON - Javascript Object Notation 
+It is a lightweight data-format used to store and exchange data between:
+Frontend -> Backend
+Backend -> APIs
+Backend -> AI models
+Types of JSON are:
+1. strings -> "helllo", "Sagar Tamang", "somthing" etc
+2. Numbers -> 234,334,223,65,2,2,1.2e5, (33e-4,7.9e9) scientific numbers - exponential 
+3. Boolens -> True and False
+4. Null -> null
+5. Arrays -> [1,3,2,4], [["a","b","c"], [1,3,5,3]] etc. 
+6. Objects -> {"key":"value",
+                "key2": "vlaue2",
+                "key3": 34
+              }
+
+Note: # most of the time dealing with json,
+you get back a string not as an JS object,
+so wh have to convert it using (backtigs(``)) in JS 
+
+# also you can always integrate all of the above and use them accordingly,
+but the syntax should not have errors. 
+# like arrays inside objects and vice-versa, you can do anything but syntax should be followed 
+and should be meaning full.
