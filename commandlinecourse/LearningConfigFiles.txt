@@ -39,3 +39,20 @@ eg:
     
     complexicity increases as the file type moves down 
 }
+
+
+New ones:::::::::
+commands to show if there are config files 
+  Appname --show-config
+  Appname --print-config 
+  appname --generate-config 
+
+  Things to keep in mind
+a. Editing a config file can change app behavior, sometimes breaking it if done incorrectly
+b. Always backup the original config before editing
+c. If the app supports generating a default config, use it first — it’s safer than creating manually
+d. Some apps store settings in the registry (Windows) — not always in files
+
+
+### Sometimes the config file is in the form of .db(datas stored in table format), 
+so, appname .db file should be read  using database like sqlite 
