@@ -1,0 +1,7 @@
+** curl http://127.0.0.1:port/endpoint -> gets the endpoint routes function in the terminal, 
+but the app/server should be running inorder to work,
+if the endpoints method is set, then only that specific method can be used not others
+also methods can be specified while using the curl methon
+** curl -X GET(methods) http://127.0.0.1:port/endpoint -> uses get method to the url 
+
+ 

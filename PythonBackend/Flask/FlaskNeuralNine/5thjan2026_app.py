@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
   return '<h1 style="background-color: red;">hello moktan</h1>'
 
-@app.route("/endpoint")
+@app.route("/home",methods=['POST']) # methods specify what the route does 
 # /endpoint is used to invoke this function in the website 
 # its like going to a different webpage after enterign /endpoint in the url
 def hello():
@@ -30,4 +30,4 @@ def handle_parms():
     return "Some parameters are missing..."
 
 if __name__ == '__main__':
-  app.run(host= "0.0.0.0",debug= True)
+  app.run(host= "0.0.0.0",port= 5555,debug= True)
