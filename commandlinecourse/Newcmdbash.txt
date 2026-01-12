@@ -1,0 +1,6 @@
+POSIX commands → Always useful (basic file/text work)
+Distro-specific commands → Installing software, managing packages
+Service & process commands → Start/stop/check apps and servers
+Network commands → Debugging and monitoring connections
+💡 Tip: If you master POSIX commands + package manager + systemctl +
+ some networking commands, you can handle almost any Linux server.
