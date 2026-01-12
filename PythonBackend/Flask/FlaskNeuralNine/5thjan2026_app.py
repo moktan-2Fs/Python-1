@@ -6,11 +6,18 @@ app = Flask(__name__)
 def index():
   return '<h1 style="background-color: red;">hello moktan</h1>'
 
-@app.route("/home",methods=['POST']) # methods specify what the route does 
+@app.route("/home",methods=['POST','GET','PUT']) # methods specify what the route does 
 # /endpoint is used to invoke this function in the website 
 # its like going to a different webpage after enterign /endpoint in the url
 def hello():
-  return "Hello Sagor Tomang!!!!"
+  if request.method == "GET":
+    return "You made a GET request......"
+  elif request.method == "POST":
+    return "You made a POST request....."
+  elif request.method == "PUT":
+    return "You made a PUT request....."
+  else:
+    return "Jackass!!! You will never see this message....."
 
 @app.route("/greet/<name>")
 def greet(name):
@@ -20,12 +27,12 @@ def greet(name):
 def add(num1,num2): 
   return f"The sum of {num1} & {num2} is: {num1+num2}"
 
-@app.route("/handle_url_parms")
+@app.route("/params")
 def handle_parms():
   if "greeting" in request.args.keys() and "name" in request.args.keys():
     greeting = request.args.get("greeting")
     name = request.args.get("name")
-    return f"{greeting},{name}"
+    return f"{greeting}, Welcome {name} to our webpage or api..."
   else: 
     return "Some parameters are missing..."
 
