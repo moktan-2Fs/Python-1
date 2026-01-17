@@ -1,0 +1,4 @@
+curl "http://...." -> gives the datas and contents of the request 
+curl http://... -> using "" is better because the symbols like &,? and etc are ignored by the cmd so "" is used to understand it as a whole 
+curl -X METHOD "http://" -> requests as the specified method accordingly 
+curl -I "http://..." -> gets the status and other informations from the url 
