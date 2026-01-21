@@ -28,7 +28,7 @@ def final_count(upass):
   num_count = numbers(upass)
   unique_count = uniq_chars(upass)
   upper_case = upper_count(upass)
-  if lenpass > 4 and num_count >= 2 and unique_count > 1 and upper_case > 1:
+  if lenpass > 4 and num_count >= 1 and unique_count >= 1 and upper_case >= 1:
     return 1
   else:
     return 0
