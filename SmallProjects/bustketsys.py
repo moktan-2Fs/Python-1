@@ -1,19 +1,23 @@
 import bsignup as sn 
+import random as rd
 import passwordmodule as pm 
 from blogin import Login as lg
+import json
 
 print(" ---------- Welcome ----------\n ------ Bus Ticket System -----\n 1. Login \n 2. Signup")
 user_ln = int(input("Choice: "))
-if user_ln == 1:
+if user_ln == 2:
   while True:
+    comp_str = "abcdefghijklmnopqrstuvwxyz0123456789@#!$%&*ABCDEFGHIJKLMN?OPQRSTUVWXYZ"
+    user_id_list= rd.choices(comp_str,k=7)
+    user_id = ''.join(user_id_list)
     user_email = input("Email: ")
-    user_num = input("Number: ")
-    obj1 = lg(user_email,user_num)
-    if obj1.is_valid_email and obj1.is_valid_number:
-      print("Valid email and valid number.")
+    obj1 = lg(user_email,user_id)
+    if obj1.is_valid_email:
+      print("Valid email.")
       break
     else:
-      print("Invalid \nTry again. ")
+      print(" Invalid!!Try again. ")
 
   while True:
     user_pass = input("Password: ")
@@ -22,6 +26,13 @@ if user_ln == 1:
       break
     else:
       print("Weak Password. \nTry stronger password..")
+  user_detail = {
+    "id": user_id,
+    "email": user_email,
+    "password": user_pass
+  }
+  with open("SmallProjects/credentials.txt", "a") as file:
+    file.write(json.dumps(user_detail) + "\n")
 
 
 # while True:
