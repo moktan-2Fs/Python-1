@@ -1,1 +1,7 @@
-# repuest api is used to make restapi calls
+import ollama
+client = ollama.Client()
+model = 'llama3.1'
+prompt = 'what is python'
+response = client.generate(model=model, prompt=prompt)
+print("response from ollama: ")
+print(response)
