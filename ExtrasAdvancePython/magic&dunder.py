@@ -35,8 +35,33 @@
 
 # # Dunder -> used or declared using __ladfj__
 
+# class Person:
+#     def __init__(self,name,age):
+#         self.name = name
+#         self.age = age
+#         print(self.name, self.age)
+#     def __del__(self): # distructor 
+#         print("Object deleted or distructed")
+    
+
+# p = Person("Sagar", 44)
 
 
-for i in range(5):
-    if i ==3: break
-print(i)
+class Vector:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def __add__(self,other): 
+        return Vector(self.x + other.x, self.y + other.y)
+    def __repr__(self):
+        return f" x "
+    def __len__(self):
+        return 50
+    def __call__(self, *args, **kwrgs):
+        print("Hello there i was called today...")
+v1 = Vector(32,33)
+v2 = Vector(33,22)
+v3 = v1 + v2
+print(v3.x, v3.y)
+print(len(v3))
+v3()
