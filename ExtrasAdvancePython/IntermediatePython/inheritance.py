@@ -30,7 +30,6 @@ class Worker(Person):
     def calc_salary(self):
         return self.salary * 12
 
-
 worker1 = Worker('kumar', 40, "M", 60000)
 print(worker1)
 print(worker1.calc_salary())

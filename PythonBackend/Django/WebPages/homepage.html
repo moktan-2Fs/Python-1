@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeHub - Buy & Sell Anything</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #001f3f 0%, #003366 50%, #004080 100%);
+        }
+        
+        .royal-navy {
+            background-color: #001f3f;
+        }
+        
+        .navy-light {
+            background-color: #003366;
+        }
+        
+        .glass {
+            background: rgba(0, 31, 63, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #FFD700;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .gold-accent {
+            color: #FFD700;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #001f3f;
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .category-btn {
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #001f3f;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 31, 63, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            h2 {
+                font-size: 2rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="showPage('home')">
+                    <div class="w-10 h-10 btn-gold rounded-lg flex items-center justify-center">
+                        <span class="text-blue-900 font-bold text-xl">T</span>
+                    </div>
+                    <span class="text-2xl font-bold text-white">TradeHub</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a onclick="showPage('home')" class="nav-link text-white hover:text-yellow-400 active" id="nav-home">Home</a>
+                    <a onclick="showPage('buy')" class="nav-link text-white hover:text-yellow-400" id="nav-buy">Browse</a>
+                    <a onclick="showPage('sell')" class="nav-link text-white hover:text-yellow-400" id="nav-sell">Sell</a>
+                    <a href="#" class="nav-link text-white hover:text-yellow-400">About</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block px-6 py-2 text-yellow-400 hover:text-yellow-300 font-semibold">Login</button>
+                    <button class="hidden sm:block px-6 py-2 btn-gold rounded-lg hover:opacity-90 font-semibold">Sign Up</button>
+                    
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="space-y-4">
+                <a onclick="showPage('home'); toggleMobileMenu()" class="block text-white hover:text-yellow-400 py-2 text-lg">Home</a>
+                <a onclick="showPage('buy'); toggleMobileMenu()" class="block text-white hover:text-yellow-400 py-2 text-lg">Browse</a>
+                <a onclick="showPage('sell'); toggleMobileMenu()" class="block text-white hover:text-yellow-400 py-2 text-lg">Sell</a>
+                <a href="#" class="block text-white hover:text-yellow-400 py-2 text-lg">About</a>
+                <hr class="border-blue-700">
+                <button class="w-full px-6 py-3 text-yellow-400 hover:text-yellow-300 font-semibold text-left">Login</button>
+                <button class="w-full px-6 py-3 btn-gold rounded-lg hover:opacity-90 font-semibold">Sign Up</button>
+            </div>
+        </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 px-6 gradient-bg">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-white fade-in">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                            Buy & Sell <br>
+                            <span class="gold-accent">Anything, Anywhere</span>
+                        </h1>
+                        <p class="text-xl mb-8 text-blue-100">
+                            Join thousands of users buying and selling products directly. No middleman, no hassle.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showPage('sell')" class="px-8 py-4 btn-gold rounded-lg font-semibold hover:opacity-90 transition">
+                                Start Selling →
+                            </button>
+                            <button onclick="showPage('buy')" class="px-8 py-4 bg-transparent border-2 border-yellow-400 text-yellow-400 rounded-lg font-semibold hover:bg-yellow-400 hover:text-blue-900 transition">
+                                Browse Products
+                            </button>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-6 mt-12">
+                            <div>
+                                <div class="text-3xl font-bold gold-accent">50K+</div>
+                                <div class="text-blue-200 text-sm">Active Users</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold gold-accent">100K+</div>
+                                <div class="text-blue-200 text-sm">Products Listed</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold gold-accent">98%</div>
+                                <div class="text-blue-200 text-sm">Success Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative animate-float">
+                        <div class="bg-white rounded-2xl shadow-2xl p-8 relative z-10">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="Shopping" class="rounded-xl w-full">
+                            <div class="absolute -bottom-4 -right-4 btn-gold rounded-xl p-4 shadow-lg">
+                                <div class="text-2xl font-bold text-blue-900">₹12,500</div>
+                                <div class="text-sm text-blue-800">Avg. Transaction</div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-yellow-400 rounded-full opacity-30 blur-2xl"></div>
+                        <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-blue-400 rounded-full opacity-30 blur-2xl"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="py-20 px-6 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose TradeHub?</h2>
+                    <p class="text-xl text-gray-600">Safe, secure, and simple peer-to-peer trading</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift border-2 border-blue-100">
+                        <div class="w-16 h-16 royal-navy rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Secure Payments</h3>
+                        <p class="text-gray-600">Escrow protection ensures safe transactions. Money held until you confirm delivery.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift border-2 border-blue-100">
+                        <div class="w-16 h-16 royal-navy rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Lightning Fast</h3>
+                        <p class="text-gray-600">List products in 30 seconds. Start selling immediately with our instant upload system.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift border-2 border-blue-100">
+                        <div class="w-16 h-16 royal-navy rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Verified Sellers</h3>
+                        <p class="text-gray-600">All sellers verified with ID and ratings. Buy with confidence from trusted users.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-20 px-6 navy-light">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white mb-4">How It Works</h2>
+                    <p class="text-xl text-blue-200">Start buying and selling in 3 simple steps</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 btn-gold rounded-full flex items-center justify-center mx-auto mb-6 text-blue-900 text-3xl font-bold">
+                            1
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Create Account</h3>
+                        <p class="text-blue-200">Sign up in 30 seconds with email or social login. No credit card required.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 btn-gold rounded-full flex items-center justify-center mx-auto mb-6 text-blue-900 text-3xl font-bold">
+                            2
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">List or Browse</h3>
+                        <p class="text-blue-200">Upload products with photos or browse thousands of listings in any category.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 btn-gold rounded-full flex items-center justify-center mx-auto mb-6 text-blue-900 text-3xl font-bold">
+                            3
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Buy or Sell</h3>
+                        <p class="text-blue-200">Complete transactions securely with escrow protection and instant messaging.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- BUY/BROWSE PAGE -->
+    <div id="buy-page" class="page">
+        <section class="pt-32 pb-12 px-6 gradient-bg">
+            <div class="max-w-7xl mx-auto text-center text-white">
+                <h1 class="text-5xl font-bold mb-4">Browse Products</h1>
+                <p class="text-xl text-blue-100">Find amazing deals from verified sellers</p>
+            </div>
+        </section>
+
+        <!-- Search & Filters -->
+        <section class="py-8 px-6 bg-white shadow-md">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Search for products..." class="w-full px-6 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none">
+                    </div>
+                    <select class="px-6 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none w-full md:w-auto">
+                        <option>All Categories</option>
+                        <option>Electronics</option>
+                        <option>Fashion</option>
+                        <option>Home & Garden</option>
+                        <option>Sports</option>
+                    </select>
+                    <select class="px-6 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none w-full md:w-auto">
+                        <option>Sort by: Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                    </select>
+                </div>
+
+                <!-- Category Pills -->
+                <div class="flex flex-wrap gap-3 mt-6">
+                    <button class="category-btn active px-4 py-2 bg-gray-100 rounded-full font-semibold text-gray-700 text-sm md:text-base">All</button>
+                    <button class="category-btn px-4 py-2 bg-gray-100 rounded-full font-semibold text-gray-700 text-sm md:text-base">Electronics</button>
+                    <button class="category-btn px-4 py-2 bg-gray-100 rounded-full font-semibold text-gray-700 text-sm md:text-base">Fashion</button>
+                    <button class="category-btn px-4 py-2 bg-gray-100 rounded-full font-semibold text-gray-700 text-sm md:text-base">Home</button>
+                    <button class="category-btn px-4 py-2 bg-gray-100 rounded-full font-semibold text-gray-700 text-sm md:text-base">Sports</button>
+                    <button class="category-btn px-4 py-2 bg-gray-100 rounded-full font-semibold text-gray-700 text-sm md:text-base">Books</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="py-12 px-6 bg-gray-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">All Products</h2>
+                    <span class="text-gray-600 text-sm md:text-base">Showing 1-12 of 1,247 results</span>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="buyProductGrid">
+                    <!-- Products will be inserted here -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex flex-wrap justify-center items-center gap-2 mt-12">
+                    <button class="px-3 md:px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-900 text-sm md:text-base">Previous</button>
+                    <button class="px-3 md:px-4 py-2 btn-gold rounded-lg text-sm md:text-base">1</button>
+                    <button class="px-3 md:px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-900 text-sm md:text-base">2</button>
+                    <button class="px-3 md:px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-900 text-sm md:text-base">3</button>
+                    <button class="px-3 md:px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-900 text-sm md:text-base">Next</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SELL PAGE -->
+    <div id="sell-page" class="page">
+        <section class="pt-32 pb-12 px-6 gradient-bg">
+            <div class="max-w-7xl mx-auto text-center text-white">
+                <h1 class="text-5xl font-bold mb-4">Sell Your Product</h1>
+                <p class="text-xl text-blue-100">List your item and reach thousands of buyers</p>
+            </div>
+        </section>
+
+        <!-- Sell Form -->
+        <section class="py-12 px-4 md:px-6 bg-gray-50">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 md:mb-8">Product Details</h2>
+                    
+                    <form id="sellForm" class="space-y-6">
+                        <!-- Product Images -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">Product Images *</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-900 transition cursor-pointer">
+                                <svg class="w-12 h-12 mx-auto mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <p class="text-gray-600">Click to upload or drag and drop</p>
+                                <p class="text-sm text-gray-500 mt-2">PNG, JPG up to 10MB (Max 5 images)</p>
+                                <input type="file" class="hidden" accept="image/*" multiple>
+                            </div>
+                        </div>
+
+                        <!-- Product Title -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">Product Title *</label>
+                            <input type="text" placeholder="e.g., iPhone 14 Pro Max 256GB" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none" required>
+                        </div>
+
+                        <!-- Category -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">Category *</label>
+                            <select class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none" required>
+                                <option value="">Select a category</option>
+                                <option>Electronics</option>
+                                <option>Fashion</option>
+                                <option>Home & Garden</option>
+                                <option>Sports & Outdoors</option>
+                                <option>Books & Media</option>
+                                <option>Vehicles</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">Description *</label>
+                            <textarea rows="6" placeholder="Describe your product in detail..." class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none" required></textarea>
+                        </div>
+
+                        <!-- Price & Condition -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-3">Price (Rs.) *</label>
+                                <input type="number" placeholder="10000" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-3">Condition *</label>
+                                <select class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none" required>
+                                    <option value="">Select condition</option>
+                                    <option>Brand New</option>
+                                    <option>Like New</option>
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-3">Location *</label>
+                            <input type="text" placeholder="e.g., Kathmandu, Nepal" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-900 focus:outline-none" required>
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h3 class="font-bold text-gray-800 mb-3">📋 Listing Tips</h3>
+                            <ul class="text-sm text-gray-700 space-y-2">
+                                <li>✓ Use clear, high-quality photos from multiple angles</li>
+                                <li>✓ Write a detailed, honest description</li>
+                                <li>✓ Set a competitive price by checking similar listings</li>
+                                <li>✓ Respond quickly to buyer inquiries</li>
+                            </ul>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="submit" class="flex-1 px-6 md:px-8 py-3 md:py-4 btn-gold rounded-lg font-semibold text-base md:text-lg hover:opacity-90 transition">
+                                Publish Listing →
+                            </button>
+                            <button type="button" class="px-6 md:px-8 py-3 md:py-4 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition">
+                                Save Draft
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Seller Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-900">0%</div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">Commission Fee</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-900">24/7</div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">Seller Support</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-900">50K+</div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">Active Buyers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer (shared across all pages) -->
+    <footer class="royal-navy text-white py-8 md:py-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-10 h-10 btn-gold rounded-lg flex items-center justify-center">
+                        <span class="text-blue-900 font-bold text-xl">T</span>
+                    </div>
+                    <span class="text-2xl font-bold">TradeHub</span>
+                </div>
+                <p class="text-blue-300 text-sm">Your trusted P2P marketplace for buying and selling anything.</p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4 gold-accent">Company</h4>
+                <ul class="space-y-2 text-blue-300 text-sm">
+                    <li><a href="#" class="hover:text-yellow-400">About Us</a></li>
+                    <li><a href="#" class="hover:text-yellow-400">Careers</a></li>
+                    <li><a href="#" class="hover:text-yellow-400">Press</a></li>
+                    <li><a href="#" class="hover:text-yellow-400">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4 gold-accent">Support</h4>
+                <ul class="space-y-2 text-blue-300 text-sm">
+                    <li><a href="#" class="hover:text-yellow-400">Help Center</a></li>
+                    <li><a href="#" class="hover:text-yellow-400">Safety</a></li>
+                    <li><a href="#" class="hover:text-yellow-400">Terms</a></li>
+                    <li><a href="#" class="hover:text-yellow-400">Privacy</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4 gold-accent">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center hover:bg-yellow-400 hover:text-blue-900 transition">F</a>
+                    <a href="#" class="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center hover:bg-yellow-400 hover:text-blue-900 transition">T</a>
+                    <a href="#" class="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center hover:bg-yellow-400 hover:text-blue-900 transition">I</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto mt-8 md:mt-12 pt-6 md:pt-8 border-t border-blue-800 text-center text-blue-300 text-sm">
+            <p>&copy; 2026 TradeHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample products data
+        const allProducts = [
+            { id: 1, name: 'iPhone 14 Pro', price: 'Rs. 125,000', image: 'https://images.unsplash.com/photo-1592286927505-4912e7d44fb0?w=400', seller: 'Ram K.', rating: 4.8, category: 'Electronics' },
+            { id: 2, name: 'MacBook Air M2', price: 'Rs. 180,000', image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400', seller: 'Sita S.', rating: 4.9, category: 'Electronics' },
+            { id: 3, name: 'Sony WH-1000XM5', price: 'Rs. 35,000', image: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400', seller: 'Hari B.', rating: 4.7, category: 'Electronics' },
+            { id: 4, name: 'Gaming Chair', price: 'Rs. 25,000', image: 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400', seller: 'Maya T.', rating: 4.6, category: 'Home' },
+            { id: 5, name: 'Nike Air Jordan', price: 'Rs. 18,000', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400', seller: 'Bikash P.', rating: 4.5, category: 'Fashion' },
+            { id: 6, name: 'Canon EOS R6', price: 'Rs. 250,000', image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400', seller: 'Anjali M.', rating: 4.9, category: 'Electronics' },
+            { id: 7, name: 'Leather Jacket', price: 'Rs. 12,000', image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400', seller: 'Rohan S.', rating: 4.4, category: 'Fashion' },
+            { id: 8, name: 'Smart Watch', price: 'Rs. 8,500', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', seller: 'Priya K.', rating: 4.6, category: 'Electronics' },
+            { id: 9, name: 'Mountain Bike', price: 'Rs. 45,000', image: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=400', seller: 'Suresh L.', rating: 4.8, category: 'Sports' },
+            { id: 10, name: 'Coffee Maker', price: 'Rs. 6,500', image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400', seller: 'Nisha D.', rating: 4.3, category: 'Home' },
+            { id: 11, name: 'Yoga Mat Set', price: 'Rs. 3,500', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400', seller: 'Anil B.', rating: 4.7, category: 'Sports' },
+            { id: 12, name: 'Study Desk', price: 'Rs. 15,000', image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400', seller: 'Rita N.', rating: 4.5, category: 'Home' }
+        ];
+
+        // Page navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(`${pageName}-page`).classList.add('active');
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById(`nav-${pageName}`).classList.add('active');
+            
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Render products if on buy page
+            if (pageName === 'buy') {
+                renderBuyProducts(allProducts);
+            }
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Mobile menu button
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                }
+            }
+        });
+
+        // Render products on buy page
+        function renderBuyProducts(products) {
+            const grid = document.getElementById('buyProductGrid');
+            grid.innerHTML = '';
+            
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-lg overflow-hidden product-card cursor-pointer';
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            ⭐ ${product.rating}
+                        </div>
+                        <div class="absolute top-3 left-3 bg-blue-900 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            ${product.category}
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">${product.name}</h3>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-2xl font-bold text-blue-900">${product.price}</span>
+                            <span class="text-sm text-gray-500">by ${product.seller}</span>
+                        </div>
+                        <button class="w-full px-4 py-2 bg-blue-900 text-yellow-400 rounded-lg font-semibold hover:bg-blue-800 transition">
+                            View Details
+                        </button>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    alert(`Viewing ${product.name}
+Price: ${product.price}
+Seller: ${product.seller}
+Rating: ${product.rating}⭐
+
+This would open a detailed product page with:
+- Full description
+- More images
+- Seller profile
+- Buy/Message buttons`);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Category filter
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('category-btn')) {
+                // Update active state
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                
+                const category = e.target.textContent;
+                if (category === 'All') {
+                    renderBuyProducts(allProducts);
+                } else {
+                    const filtered = allProducts.filter(p => p.category === category);
+                    renderBuyProducts(filtered);
+                }
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = allProducts.filter(p => 
+                    p.name.toLowerCase().includes(query) ||
+                    p.category.toLowerCase().includes(query)
+                );
+                renderBuyProducts(filtered);
+            });
+        }
+
+        // Sell form submission
+        const sellForm = document.getElementById('sellForm');
+        if (sellForm) {
+            sellForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('🎉 Product listed successfully!');
+                sellForm.reset();
+            });
+        }
+
+        // Smooth scroll for navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 6px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Initialize - render buy products on load
+        renderBuyProducts(allProducts);
+    </script>
+</body>
+</html>
