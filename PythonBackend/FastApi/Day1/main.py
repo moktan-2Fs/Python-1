@@ -3,7 +3,7 @@ from fastapi.params import Body
 from pydantic import BaseModel
 import random as rd
 import txttospee as txt
-from ollama import chat 
+from ollama import chat
 app = FastAPI()
 
 my_posts = [{'title': 'titleof post 1',
@@ -13,11 +13,12 @@ my_posts = [{'title': 'titleof post 1',
              'title': 'favourite food',
              'content': 'gundruk is my favourite food'}]
 
+
 def ask_model(user: str) -> str:
     response = chat(model='llama3.1', messages=[
         {'role': 'user',
                  'content': user,
-                    }
+         }
     ])
     return response.message.content
 
@@ -44,6 +45,17 @@ def get_post():
 
 # title str, content str,
 
+
+@app.post('/postss')
+def cre_post(post: Post):
+    post_dic = post.dict()
+    post_dic['id'] = rd.randrange(111, 9999)
+    c = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ#$@&*'
+    po = ''.join(rd.choices(c, k=9))
+    print(po)
+    return f"{po} is your id. Please remember and store it somewhere.."
+
+
 @app.post('/posts')
 def create_new_post(new_post: Post):
     dict_post = new_post.dict()
@@ -53,11 +65,3 @@ def create_new_post(new_post: Post):
     for _ in my_posts:
         print(_)
     return {'Model::': model_ans}
-
-@app.post('/postss')
-def cre_post(post: Post):
-    post_dic = post.dict()
-    post_dic['id'] = rd.randrange(111,9999)
-    c = 'slflajf34'
-    po = ''.join(rd.choices(c, k= 2))
-    print(po)
