@@ -65,3 +65,16 @@ def create_new_post(new_post: Post):
     for _ in my_posts:
         print(_)
     return {'Model::': model_ans}
+
+def find_post(id):
+    for di in my_posts:
+        for key, value in di.items():
+            if key['id'] == id:
+                return di
+            else:
+                continue
+
+@app.get("/posts/{id}")
+def get_posts(id):
+    find = find_post(id)
+    return find
